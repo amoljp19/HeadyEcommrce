@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     dataBinding {
         enabled = true
@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId "com.softaai.heady_e_commerce"
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -36,6 +36,8 @@ dependencies {
 
     //noinspection GradleCompatible
     implementation "com.android.support:recyclerview-v7:$android_support_version"
+
+    implementation "com.android.support:design:$android_support_version"
 
     //kapt "com.android.databinding:compiler:$android_plugin_version"
 

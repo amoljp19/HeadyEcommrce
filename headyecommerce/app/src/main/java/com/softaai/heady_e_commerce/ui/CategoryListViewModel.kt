@@ -2,7 +2,11 @@ package com.softaai.heady_e_commerce.ui
 
 import android.view.View
 import android.arch.lifecycle.MutableLiveData
+import android.util.Log
+import com.softaai.heady_e_commerce.R
 import com.softaai.heady_e_commerce.base.BaseViewModel
+import com.softaai.heady_e_commerce.model.Category
+import com.softaai.heady_e_commerce.model.MainResponse
 import com.softaai.heady_e_commerce.network.RemoteServiceApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -23,36 +27,49 @@ class CategoryListViewModel : BaseViewModel(){
 
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
+    val errorMessage:MutableLiveData<Int> = MutableLiveData()
+    val errorClickListener = View.OnClickListener { loadCategories() }
+
+    val categoryListAdapter: CategoryListAdapter = CategoryListAdapter()
+
+
+
     init{
-        loadPosts()
+        loadCategories()
     }
 
-    private fun loadPosts(){
-        subscription = remoteServiceApi.getCategories()
+    private fun loadCategories(){
+        subscription = remoteServiceApi.getMainResponse()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onRetrieveCategoryListStart() }
                 .doOnTerminate { onRetrieveCategoryListFinish() }
                 .subscribe(
-                        { onRetrieveCategoryListSuccess() },
-                        { onRetrieveCategoryListError() }
+                        {result -> onRetrieveCategoryListSuccess(result) },
+                        {error -> onRetrieveCategoryListError(error) }
                 )
     }
 
     private fun onRetrieveCategoryListStart(){
         loadingVisibility.value = View.VISIBLE
+        errorMessage.value = null
     }
 
     private fun onRetrieveCategoryListFinish(){
         loadingVisibility.value = View.GONE
     }
 
-    private fun onRetrieveCategoryListSuccess(){
-
+    private fun onRetrieveCategoryListSuccess(result: MainResponse) {
+        Log.d("Result", "There are ${result} categories in main response")
+        categoryListAdapter.updateCategoryList(result.categoriesList)
+        loadingVisibility.value = View.GONE
     }
 
-    private fun onRetrieveCategoryListError(){
-
+    private fun onRetrieveCategoryListError(error: Throwable) {
+        Log.d("Result", "There are ${error.message} categories in main response")
+        error.printStackTrace()
+        errorMessage.value = R.string.category_error
+        loadingVisibility.value = View.GONE
     }
 
     override fun onCleared() {
