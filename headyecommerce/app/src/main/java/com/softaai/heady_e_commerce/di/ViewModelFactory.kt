@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.persistence.room.Room
 import android.support.v7.app.AppCompatActivity
-import com.softaai.heady_e_commerce.model.database.AppDatabase
+import com.softaai.heady_e_commerce.data.database.AppDatabase
 import com.softaai.heady_e_commerce.ui.CategoryListViewModel
 
 

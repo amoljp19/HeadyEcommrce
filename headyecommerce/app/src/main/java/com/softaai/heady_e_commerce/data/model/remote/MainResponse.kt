@@ -1,4 +1,4 @@
-package com.softaai.heady_e_commerce.model
+package com.softaai.heady_e_commerce.data.model.remote
 
 import android.arch.persistence.room.TypeConverters
 import com.softaai.heady_e_commerce.utils.converters.CategoryListConverter
@@ -11,8 +11,6 @@ import com.squareup.moshi.Json
  */
 
 data class MainResponse(
-        @TypeConverters(CategoryListConverter::class)
-        @field:Json(name = "categories")val categoriesList: List<Category>,
-        @TypeConverters(RankingListConverter::class)
-        @field:Json(name = "rankings")val rankingsList: List<Ranking>
+        @field:Json(name = "categories")val categoriesList: List<CategoryResponse>,
+        @field:Json(name = "rankings")val rankingsList: List<RankingResponse>
 )

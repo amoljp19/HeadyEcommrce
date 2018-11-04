@@ -2,8 +2,8 @@ package com.softaai.heady_e_commerce.ui
 
 import android.arch.lifecycle.MutableLiveData
 import com.softaai.heady_e_commerce.base.BaseViewModel
-import com.softaai.heady_e_commerce.model.Category
-import com.softaai.heady_e_commerce.model.CategoryProduct
+import com.softaai.heady_e_commerce.model.remote.CategoryResponse
+import com.softaai.heady_e_commerce.model.remote.CategoryProductResponse
 
 
 /**
@@ -14,14 +14,14 @@ class CategoryViewModel:BaseViewModel() {
 
     private val categoryId = MutableLiveData<Int>()
     private val categoryName = MutableLiveData<String>()
-    private val categoryProductsList = MutableLiveData<List<CategoryProduct>>()
+    private val categoryProductsList = MutableLiveData<List<CategoryProductResponse>>()
     private val childCategoriesList = MutableLiveData<List<Int>>()
 
-    fun bind(category: Category){
-        categoryId.value = category.id
-        categoryName.value = category.name
-        categoryProductsList.value = category.productsList
-        childCategoriesList.value = category.childCategoriesList
+    fun bind(categoryResponse: CategoryResponse){
+        categoryId.value = categoryResponse.id
+        categoryName.value = categoryResponse.name
+        categoryProductsList.value = categoryResponse.productsList
+        childCategoriesList.value = categoryResponse.childCategoriesList
 
     }
 
@@ -33,7 +33,7 @@ class CategoryViewModel:BaseViewModel() {
         return categoryName
     }
 
-    fun getCategoryProductsList():MutableLiveData<List<CategoryProduct>>{
+    fun getCategoryProductsList():MutableLiveData<List<CategoryProductResponse>>{
         return categoryProductsList
     }
 

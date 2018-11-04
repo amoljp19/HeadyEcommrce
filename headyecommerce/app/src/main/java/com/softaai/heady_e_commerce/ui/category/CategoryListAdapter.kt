@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.softaai.heady_e_commerce.R
-import com.softaai.heady_e_commerce.model.Category
+import com.softaai.heady_e_commerce.data.model.remote.CategoryResponse
 
 import com.softaai.heady_e_commerce.databinding.ItemCategoryBinding
 
@@ -18,7 +18,7 @@ import com.softaai.heady_e_commerce.databinding.ItemCategoryBinding
  */
 
 class CategoryListAdapter: RecyclerView.Adapter<CategoryListAdapter.ViewHolder>() {
-    private lateinit var categoryList:List<Category>
+    private lateinit var categoryResponseList:List<CategoryResponse>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryListAdapter.ViewHolder {
         val binding: ItemCategoryBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_category, parent, false)
@@ -26,23 +26,23 @@ class CategoryListAdapter: RecyclerView.Adapter<CategoryListAdapter.ViewHolder>(
     }
 
     override fun onBindViewHolder(holder: CategoryListAdapter.ViewHolder, position: Int) {
-        holder.bind(categoryList[position])
+        holder.bind(categoryResponseList[position])
     }
 
     override fun getItemCount(): Int {
-        return if(::categoryList.isInitialized) categoryList.size else 0
+        return if(::categoryResponseList.isInitialized) categoryResponseList.size else 0
     }
 
-    fun updateCategoryList(categoryList:List<Category>){
-        this.categoryList = categoryList
+    fun updateCategoryList(categoryResponseList:List<CategoryResponse>){
+        this.categoryResponseList = categoryResponseList
         notifyDataSetChanged()
     }
 
     class ViewHolder(private val binding: ItemCategoryBinding):RecyclerView.ViewHolder(binding.root){
         private val viewModel = CategoryViewModel()
 
-        fun bind(category:Category){
-            viewModel.bind(category)
+        fun bind(categoryResponse: CategoryResponse){
+            viewModel.bind(categoryResponse)
             binding.viewModel = viewModel
         }
     }

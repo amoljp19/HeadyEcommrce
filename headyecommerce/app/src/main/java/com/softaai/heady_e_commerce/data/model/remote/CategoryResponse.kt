@@ -1,4 +1,4 @@
-package com.softaai.heady_e_commerce.model
+package com.softaai.heady_e_commerce.data.model.remote
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
@@ -12,13 +12,9 @@ import com.squareup.moshi.Json
  * softAai Apps
  */
 
-@Entity
-data class Category(
-        @PrimaryKey (autoGenerate = true)
+data class CategoryResponse(
         @field:Json(name = "id") val id: Int,
         @field:Json(name = "name") val name: String,
-        @TypeConverters(CategoryProductsListConverter::class)
-        @field:Json(name = "products")val productsList: List<CategoryProduct>,
-        @TypeConverters(IntListConverter::class)
+        @field:Json(name = "products")val productsList: List<CategoryProductResponse>,
         @field:Json(name = "child_categories")val childCategoriesList: List<Int>
 )

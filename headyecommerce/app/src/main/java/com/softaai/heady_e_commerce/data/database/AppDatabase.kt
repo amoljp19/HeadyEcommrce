@@ -1,13 +1,16 @@
-package com.softaai.heady_e_commerce.model.database
+package com.softaai.heady_e_commerce.data.database
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import android.content.Context
-import com.softaai.heady_e_commerce.model.*
-import com.softaai.heady_e_commerce.model.dao.*
-import com.softaai.heady_e_commerce.utils.converters.*
+import com.softaai.heady_e_commerce.data.converter.TaxInfoConverter
+import com.softaai.heady_e_commerce.data.converter.VariantConverter
+import com.softaai.heady_e_commerce.data.model.dao.CategoryDao
+import com.softaai.heady_e_commerce.data.model.dao.ProductDao
+import com.softaai.heady_e_commerce.data.model.dao.RankingDao
+import com.softaai.heady_e_commerce.data.model.local.*
 
 
 /**
@@ -15,15 +18,16 @@ import com.softaai.heady_e_commerce.utils.converters.*
  * softAai Apps
  */
 
-@Database(entities = [Category::class, CategoryProduct::class, Ranking::class, RankingProduct::class, Tax::class, Variant::class], version = 1)
-@TypeConverters(CategoryListConverter::class, CategoryProductsListConverter::class, IntListConverter::class, RankingListConverter::class, RankingProductsListConverter::class, VariantListConverter::class, TaxObjectConverter::class)
+@Database(entities = [Category::class, Product::class, OrderedRanking::class,
+    SharedRanking::class, ViewedRanking::class], version = 1)
+@TypeConverters(TaxInfoConverter::class, VariantConverter::class)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun categoryDao(): CategoryDao
-    abstract fun categoryProductDao(): CategoryProductDao
+
+    abstract fun productDao(): ProductDao
+
     abstract fun rankingDao(): RankingDao
-    abstract fun rankingProductDao(): RankingProductDao
-    abstract fun taxDao(): TaxDao
-    abstract fun variantDao(): VariantDao
 
     companion object {
         var INSTANCE: AppDatabase? = null
@@ -42,3 +46,4 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 }
+

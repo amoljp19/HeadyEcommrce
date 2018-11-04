@@ -15,7 +15,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <categoryResponse android:name="android.intent.categoryResponse.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

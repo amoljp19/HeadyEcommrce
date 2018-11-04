@@ -1,7 +1,6 @@
 package com.softaai.heady_e_commerce.network
 
-import com.softaai.heady_e_commerce.model.Category
-import com.softaai.heady_e_commerce.model.MainResponse
+import com.softaai.heady_e_commerce.data.model.remote.MainResponse
 import retrofit2.http.GET
 import io.reactivex.Observable
 
@@ -17,6 +16,6 @@ interface RemoteServiceApi{
     fun getMainResponse():Observable<MainResponse>
 
 //    @GET("/json")
-//    fun getCategoriesResponse():Observable<List<Category>>
+//    fun getCategoriesResponse():Observable<List<CategoryResponse>>
 
 }

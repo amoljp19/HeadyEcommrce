@@ -1,4 +1,4 @@
-package com.softaai.heady_e_commerce.model
+package com.softaai.heady_e_commerce.data.model.remote
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
@@ -11,14 +11,10 @@ import com.squareup.moshi.Json
  * Created by Amol Pawar on 03-11-2018.
  * softAai Apps
  */
-@Entity
-data class CategoryProduct(
-        @PrimaryKey
+data class CategoryProductResponse(
         @field:Json(name = "id")val id:Int,
         @field:Json(name = "name")val name:String,
         @field:Json(name = "date_added")val dateAdded:String,
-        @TypeConverters(VariantListConverter::class)
-        @field:Json(name = "variants")val variantsList:List<Variant>,
-        @TypeConverters(TaxObjectConverter::class)
-        @field:Json(name = "tax")val tax:Tax
+        @field:Json(name = "variants")val variantsList:List<VariantResponse>,
+        @field:Json(name = "taxResponse")val taxResponse: TaxResponse
 )

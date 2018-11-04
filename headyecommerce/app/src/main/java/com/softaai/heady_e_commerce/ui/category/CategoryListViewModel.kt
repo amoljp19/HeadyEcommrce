@@ -5,7 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.softaai.heady_e_commerce.R
 import com.softaai.heady_e_commerce.base.BaseViewModel
-import com.softaai.heady_e_commerce.model.MainResponse
+import com.softaai.heady_e_commerce.model.remote.MainResponse
 import com.softaai.heady_e_commerce.model.dao.CategoryDao
 import com.softaai.heady_e_commerce.network.RemoteServiceApi
 import io.reactivex.Observable
