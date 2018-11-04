@@ -2,6 +2,8 @@ package com.softaai.heady_e_commerce.ui
 
 import android.arch.lifecycle.MutableLiveData
 import com.softaai.heady_e_commerce.base.BaseViewModel
+import com.softaai.heady_e_commerce.data.model.remote.CategoryProductResponse
+import com.softaai.heady_e_commerce.data.model.remote.CategoryResponse
 import com.softaai.heady_e_commerce.model.remote.CategoryResponse
 import com.softaai.heady_e_commerce.model.remote.CategoryProductResponse
 
@@ -40,6 +42,11 @@ class CategoryViewModel:BaseViewModel() {
     fun getChildCategoriesList():MutableLiveData<List<Int>>{
         return childCategoriesList
     }
+
+
+
+
+
 
 
 

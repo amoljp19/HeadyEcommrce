@@ -5,6 +5,8 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.softaai.heady_e_commerce.R
 import com.softaai.heady_e_commerce.base.BaseViewModel
+import com.softaai.heady_e_commerce.data.model.dao.CategoryDao
+import com.softaai.heady_e_commerce.data.model.remote.MainResponse
 import com.softaai.heady_e_commerce.model.remote.MainResponse
 import com.softaai.heady_e_commerce.model.dao.CategoryDao
 import com.softaai.heady_e_commerce.network.RemoteServiceApi
@@ -41,12 +43,12 @@ class CategoryListViewModel(categoryDao: CategoryDao) : BaseViewModel(){
     }
 
     private fun loadCategories(categoryDao: CategoryDao) {
-       subscription = Observable.fromCallable { categoryDao.getCategories() }
+       subscription = Observable.fromCallable { categoryDao.getAllCategories() }
                 .concatMap {
                     dbCategoryList ->
                     if(dbCategoryList.isEmpty())
                         remoteServiceApi.getMainResponse().concatMap {
-                            apiCategoryList -> categoryDao.insertAll(*apiCategoryList.categoriesList.toTypedArray())
+                            apiCategoryList -> categoryDao.insertAllCategories(apiCategoryList.categoriesList.toTypedArray())
                             Observable.just(apiCategoryList)
                         }
                     else
