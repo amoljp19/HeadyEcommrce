@@ -29,7 +29,8 @@ class CategoryListViewModel(categoryDao: CategoryDao) : BaseViewModel(){
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
     val errorMessage:MutableLiveData<Int> = MutableLiveData()
-    val errorClickListener = View.OnClickListener { loadCategories(categoryDao) }
+    val errorClickListener = View.OnClickListener {
+        loadCategories(categoryDao) }
 
     val categoryListAdapter: CategoryListAdapter = CategoryListAdapter()
 
