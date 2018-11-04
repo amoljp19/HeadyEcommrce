@@ -3,6 +3,7 @@ package com.softaai.heady_e_commerce.model
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import android.arch.persistence.room.TypeConverters
+import com.softaai.heady_e_commerce.utils.converters.TaxObjectConverter
 import com.softaai.heady_e_commerce.utils.converters.VariantListConverter
 import com.squareup.moshi.Json
 
@@ -18,5 +19,6 @@ data class CategoryProduct(
         @field:Json(name = "date_added")val dateAdded:String,
         @TypeConverters(VariantListConverter::class)
         @field:Json(name = "variants")val variantsList:List<Variant>,
+        @TypeConverters(TaxObjectConverter::class)
         @field:Json(name = "tax")val tax:Tax
 )

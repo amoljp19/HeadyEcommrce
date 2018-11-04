@@ -11,5 +11,6 @@ import com.squareup.moshi.Json
 @Entity
 data class Tax(
         @PrimaryKey(autoGenerate = true)
+        val id:Int,
         @field:Json(name = "name")val name:String,
         @field:Json(name = "value")val value:Float)

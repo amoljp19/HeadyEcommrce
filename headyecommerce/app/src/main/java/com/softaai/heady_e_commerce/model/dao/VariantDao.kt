@@ -9,7 +9,7 @@ import com.softaai.heady_e_commerce.model.Variant
  * Created by Amol Pawar on 04-11-2018.
  * softAai Apps
  */
-
+@Dao
 interface VariantDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertVariant(variant: Variant)

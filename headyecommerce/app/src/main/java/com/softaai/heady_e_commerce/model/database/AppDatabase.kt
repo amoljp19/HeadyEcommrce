@@ -16,7 +16,7 @@ import com.softaai.heady_e_commerce.utils.converters.*
  */
 
 @Database(entities = [Category::class, CategoryProduct::class, Ranking::class, RankingProduct::class, Tax::class, Variant::class], version = 1)
-@TypeConverters(CategoryListConverter::class, CategoryProductsListConverter::class, IntListConverter::class, RankingListConverter::class, RankingProductsListConverter::class, VariantListConverter::class)
+@TypeConverters(CategoryListConverter::class, CategoryProductsListConverter::class, IntListConverter::class, RankingListConverter::class, RankingProductsListConverter::class, VariantListConverter::class, TaxObjectConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun categoryDao(): CategoryDao
     abstract fun categoryProductDao(): CategoryProductDao

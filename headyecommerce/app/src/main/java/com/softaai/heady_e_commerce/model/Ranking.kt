@@ -13,6 +13,7 @@ import com.squareup.moshi.Json
 @Entity
 data class Ranking(
         @PrimaryKey(autoGenerate = true)
+        val id:Int,
         @field:Json(name = "ranking")val ranking:String,
         @TypeConverters(RankingProductsListConverter::class)
         @field:Json(name = "products")val rankingProductsList:List<RankingProduct>

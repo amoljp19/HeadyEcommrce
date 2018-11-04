@@ -9,6 +9,7 @@ import com.softaai.heady_e_commerce.model.RankingProduct
  * Created by Amol Pawar on 04-11-2018.
  * softAai Apps
  */
+@Dao
 interface RankingProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertRankingProduct(rankingProduct: RankingProduct)
