@@ -5,9 +5,10 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.softaai.heady_e_commerce.R
 import com.softaai.heady_e_commerce.base.BaseViewModel
-import com.softaai.heady_e_commerce.model.Category
 import com.softaai.heady_e_commerce.model.MainResponse
+import com.softaai.heady_e_commerce.model.dao.CategoryDao
 import com.softaai.heady_e_commerce.network.RemoteServiceApi
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -19,7 +20,7 @@ import javax.inject.Inject
  * softAai Apps
  */
 
-class CategoryListViewModel : BaseViewModel(){
+class CategoryListViewModel(categoryDao: CategoryDao) : BaseViewModel(){
     @Inject
     lateinit var remoteServiceApi: RemoteServiceApi
 
@@ -28,24 +29,34 @@ class CategoryListViewModel : BaseViewModel(){
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
 
     val errorMessage:MutableLiveData<Int> = MutableLiveData()
-    val errorClickListener = View.OnClickListener { loadCategories() }
+    val errorClickListener = View.OnClickListener { loadCategories(categoryDao) }
 
     val categoryListAdapter: CategoryListAdapter = CategoryListAdapter()
 
 
 
     init{
-        loadCategories()
+        loadCategories(categoryDao)
     }
 
-    private fun loadCategories(){
-        subscription = remoteServiceApi.getMainResponse()
+    private fun loadCategories(categoryDao: CategoryDao) {
+       subscription = Observable.fromCallable { categoryDao.getCategories() }
+                .concatMap {
+                    dbCategoryList ->
+                    if(dbCategoryList.isEmpty())
+                        remoteServiceApi.getMainResponse().concatMap {
+                            apiCategoryList -> categoryDao.insertAll(*apiCategoryList.categoriesList.toTypedArray())
+                            Observable.just(apiCategoryList)
+                        }
+                    else
+                        Observable.just(dbCategoryList)
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { onRetrieveCategoryListStart() }
                 .doOnTerminate { onRetrieveCategoryListFinish() }
                 .subscribe(
-                        {result -> onRetrieveCategoryListSuccess(result) },
+                        {result -> onRetrieveCategoryListSuccess(result as MainResponse) },
                         {error -> onRetrieveCategoryListError(error) }
                 )
     }

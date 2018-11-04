@@ -1,10 +1,15 @@
 package com.softaai.heady_e_commerce.model
 
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import com.squareup.moshi.Json
 
 /**
  * Created by Amol Pawar on 03-11-2018.
  * softAai Apps
  */
-
-data class Tax(@field:Json(name = "name")val name:String, @field:Json(name = "value")val value:Float)
+@Entity
+data class Tax(
+        @PrimaryKey(autoGenerate = true)
+        @field:Json(name = "name")val name:String,
+        @field:Json(name = "value")val value:Float)

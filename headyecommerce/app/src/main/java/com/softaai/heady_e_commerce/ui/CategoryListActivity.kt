@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.softaai.heady_e_commerce.R
 
 import com.softaai.heady_e_commerce.databinding.ActivityCategoryListBinding
+import com.softaai.heady_e_commerce.di.ViewModelFactory
 
 
 /**
@@ -30,7 +31,7 @@ class CategoryListActivity: AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_category_list)
         binding.categoryList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        viewModel = ViewModelProviders.of(this).get(CategoryListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ViewModelFactory(this)).get(CategoryListViewModel::class.java)
         viewModel.errorMessage.observe(this, Observer {
             errorMessage -> if(errorMessage != null) showError(errorMessage) else hideError()
         })
