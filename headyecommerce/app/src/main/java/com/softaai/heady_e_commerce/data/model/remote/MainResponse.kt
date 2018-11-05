@@ -1,8 +1,5 @@
 package com.softaai.heady_e_commerce.data.model.remote
 
-import android.arch.persistence.room.TypeConverters
-import com.softaai.heady_e_commerce.utils.converters.CategoryListConverter
-import com.softaai.heady_e_commerce.utils.converters.RankingListConverter
 import com.squareup.moshi.Json
 
 /**

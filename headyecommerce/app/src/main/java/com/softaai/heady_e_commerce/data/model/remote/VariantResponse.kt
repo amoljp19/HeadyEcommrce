@@ -1,7 +1,5 @@
 package com.softaai.heady_e_commerce.data.model.remote
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
 import com.squareup.moshi.Json
 
 /**

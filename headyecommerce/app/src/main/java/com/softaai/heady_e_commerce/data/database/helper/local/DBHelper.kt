@@ -1,15 +1,15 @@
-package com.softaai.heady_e_commerce.data.database
+package com.softaai.heady_e_commerce.data.database.helper.local
 
 import com.softaai.heady_e_commerce.data.model.local.*
 import io.reactivex.Maybe
 
 
 /**
- * Created by Amol Pawar on 04-11-2018.
+ * Created by Amol Pawar on 05-11-2018.
  * softAai Apps
  */
 
-interface LocalDbManager {
+interface DBHelper {
 
     fun insertCategoriesInDB(categoryList: List<Category>): Unit
 

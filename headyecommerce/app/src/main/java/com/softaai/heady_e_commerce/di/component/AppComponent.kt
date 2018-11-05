@@ -2,7 +2,7 @@ package com.softaai.heady_e_commerce.di.component
 
 import android.app.Application
 import android.content.Context
-import com.softaai.heady_e_commerce.data.database.LocalDbManager
+import com.softaai.heady_e_commerce.data.database.DataManager
 import com.softaai.heady_e_commerce.di.module.AppModule
 import dagger.BindsInstance
 import dagger.Component
@@ -30,6 +30,6 @@ interface AppComponent {
 
     fun getContext() : Context
 
-    fun getLocalDbManager() : LocalDbManager
+    fun getDataManager() : DataManager
 
 }
