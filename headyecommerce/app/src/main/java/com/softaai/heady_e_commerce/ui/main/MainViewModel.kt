@@ -34,6 +34,7 @@ class MainViewModel(dataManager: DataManager) : BaseViewModel<MainNavigator>(dat
                     categoryList.addAll(result)
                     setIsLoading(false)
                 }, {
+                    it -> it.printStackTrace()
                     setIsLoading(false)
                     Toast.makeText(App.instance.applicationContext,
                             App.instance.applicationContext.getString(R.string.no_internet), Toast.LENGTH_SHORT).show()

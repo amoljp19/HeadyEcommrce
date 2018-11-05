@@ -7,6 +7,6 @@ import com.squareup.moshi.Json
  * softAai Apps
  */
 data class TaxResponse(
-        @field:Json(name = "name")val name:String,
-        @field:Json(name = "value")val value:Float
+        @field:Json(name = "name")val name:String? = null,
+        @field:Json(name = "value")val value:Float? = null
 )

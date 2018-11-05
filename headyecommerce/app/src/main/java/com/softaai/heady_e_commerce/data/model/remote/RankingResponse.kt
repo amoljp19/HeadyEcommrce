@@ -7,7 +7,6 @@ import com.squareup.moshi.Json
  * softAai Apps
  */
 data class RankingResponse(
-        val id:Int,
-        @field:Json(name = "ranking")val ranking:String,
-        @field:Json(name = "products")val rankingProductsListResponse:List<RankingProductResponse>
+        @field:Json(name = "ranking")val ranking:String? = null,
+        @field:Json(name = "products")val rankingProductsListResponse:List<RankingProductResponse>? = null
 )

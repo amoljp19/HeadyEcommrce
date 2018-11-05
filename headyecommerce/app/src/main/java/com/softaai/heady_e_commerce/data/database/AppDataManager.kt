@@ -90,7 +90,7 @@ class AppDataManager: DataManager {
                     variant.id = variantResponse.id as Int
                     variant.color = variantResponse.color as String
                     variant.price = variantResponse.price as Int
-                    variant.size = if (variantResponse.size == null) "" else variantResponse.size as String
+                    variant.size = if (variantResponse.size == null) "" else (variantResponse.size as Integer).toString()
 
                     variantInfoList.add(variant)
                 }
@@ -98,8 +98,8 @@ class AppDataManager: DataManager {
                 product.variantInfo = variantInfoList
 
                 var taxInfo = TaxInfo()
-                taxInfo.name = productResponse.taxResponse?.name!!
-                taxInfo.value = productResponse.taxResponse?.value!!
+                taxInfo.name = productResponse.taxResponse?.name?:""
+                taxInfo.value = productResponse.taxResponse?.value?:0f
                 product.taxInfo  = taxInfo
 
                 productList.add(product)
@@ -132,7 +132,7 @@ class AppDataManager: DataManager {
                 for (viewCountResponse in rankingResponse.rankingProductsListResponse!!) {
                     var orderedRanking = OrderedRanking()
                     orderedRanking.id = viewCountResponse.id!!
-                    orderedRanking.order_count = viewCountResponse.orderCount!!
+                    orderedRanking.order_count = viewCountResponse.orderCount?:0
                     orderedRankingList.add(orderedRanking)
                 }
             } else if ("Most ShaRed Products".equals(rankingResponse.ranking)) {

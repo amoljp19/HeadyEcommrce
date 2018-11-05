@@ -7,9 +7,9 @@ import com.squareup.moshi.Json
  * softAai Apps
  */
 data class CategoryProductResponse(
-        @field:Json(name = "id")val id:Int,
-        @field:Json(name = "name")val name:String,
-        @field:Json(name = "date_added")val dateAdded:String,
-        @field:Json(name = "variants")val variantsList:List<VariantResponse>,
-        @field:Json(name = "taxResponse")val taxResponse: TaxResponse
+        @field:Json(name = "id")val id:Int? = null,
+        @field:Json(name = "name")val name:String? = null,
+        @field:Json(name = "date_added")val dateAdded:String? = null,
+        @field:Json(name = "variants")val variantsList:List<VariantResponse>? = null,
+        @field:Json(name = "taxResponse")val taxResponse: TaxResponse? = null
 )

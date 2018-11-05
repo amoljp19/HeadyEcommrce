@@ -8,6 +8,6 @@ import com.squareup.moshi.Json
  */
 
 data class MainResponse(
-        @field:Json(name = "categories")val categoriesList: List<CategoryResponse>,
-        @field:Json(name = "rankings")val rankingsList: List<RankingResponse>
+        @field:Json(name = "categories")val categoriesList: List<CategoryResponse>? = null,
+        @field:Json(name = "rankings")val rankingsList: List<RankingResponse>? = null
 )
