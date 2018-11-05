@@ -48,7 +48,7 @@ class ProductDetailViewModel(dataManager: DataManager) : BaseViewModel<Navigator
 
     fun setProduct(product: Product) {
         productName.set(product.productName)
-        productImg.set(product.productName.substring(0,1))
+        productImg.set(product.productName)
         taxInfo.set(product.taxInfo!!.name + "  -  " + product.taxInfo!!.value + "%")
 
         setVariant(product.variantInfo!!.get(0))

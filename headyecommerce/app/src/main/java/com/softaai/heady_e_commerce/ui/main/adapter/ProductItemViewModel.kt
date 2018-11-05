@@ -20,7 +20,7 @@ class ProductItemViewModel  {
     constructor(product: Product, viewModelListener: ProductViewModelListener) {
         this.product = product
         this.productViewModelListener = viewModelListener
-        productImg = ObservableField<String>(product.productName.substring(0,1))
+        productImg = ObservableField<String>(product.productName)
         productName = ObservableField<String>(product.productName)
         productId = ObservableField<Int>(product.productId)
         categoryId = ObservableField<Int>(product.categoryId)
